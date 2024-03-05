@@ -1,0 +1,30 @@
+# Django
+Django~=4.2.3
+django-environ
+djangorestframework
+django-debug-toolbar
+pillow
+
+# CORS
+django-cors-headers
+
+# AppServer
+gunicorn
+
+# DB
+mysqlclient
+
+#Graphql
+graphene-django
+
+# Auth
+django-allauth
+dj-rest-auth
+djangorestframework-simplejwt
+PyJWT
+djoser
+
+# Linting, Formatting
+flake8
+black
+isort
