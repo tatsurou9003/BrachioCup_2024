@@ -5,10 +5,10 @@ volumes:
 
 services:
   django:
-    container_name: django
-    build: ./django
+    container_name: api-django
+    build: ./api-django
     volumes:
-      - ./django:/code
+      - ./api-django:/code
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     ports:
       - 8000:8000
