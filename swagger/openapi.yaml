@@ -1,0 +1,349 @@
+openapi: 3.0.3
+info:
+  title: "VEGMET API"
+  description: VEGMET API
+  version: 1.0.0
+
+servers:
+  - url: "http://localhost:8000"
+    description: 開発用
+
+security:
+  - token_auth: []
+
+tags:
+  - name: top
+    description: トップ画面
+  - name: auth
+    description: 認証関連API
+  - name: home
+    description: ホーム関連API
+  - name: order
+    description: オーダー関連API
+  - name: recipe
+    description: レシピ関連API
+
+paths:
+  # 認証関連
+  /vegmet/login/:
+    post:
+      summary: ログイン
+      description: ユーザーのログイン
+      tags:
+        - auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthUserLogin"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthUser"
+        403:
+          $ref: "#/components/responses/Forbidden"
+        500:
+          $ref: "#/components/responses/InternalServerError"
+      security: []
+  # ホーム関連
+  /vegmet/home/{user_id}/:
+    get:
+      summary: 指定のユーザーのレシピ一覧画面
+      description: 指定のユーザーレシピを一覧表示する、個人のホーム画面
+      tags:
+        - home
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            description: 指定のユーザーID
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetPersonalRecipes"
+        403:
+          $ref: "#/components/responses/Forbidden"
+        500:
+          $ref: "#/components/responses/InternalServerError"
+      security: []
+  /vegmet/home/global/:
+    get:
+      summary: 全てのユーザーのレシピ一覧画面
+      description: 全てのユーザーのレシピを一覧表示する、グローバルなホーム画面
+      tags:
+        - home
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetGlobalRecipes"
+        403:
+          $ref: "#/components/responses/Forbidden"
+        500:
+          $ref: "#/components/responses/InternalServerError"
+      security: []
+  # オーダー関連
+  /vegmet/order/:
+    post:
+      summary: レシピの新規作成
+      description: パラメーターで指定されたレシピの新規作成
+      tags:
+        - order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PostOrderRequest"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostOrderResponse"
+        403:
+          $ref: "#/components/responses/Forbidden"
+        500:
+          $ref: "#/components/responses/InternalServerError"
+      security: []
+  # レシピ関連
+  /vegmet/recipe/{recipe_id}:
+    get:
+      summary: 指定のレシピ情報取得
+      description: 指定のレシピ情報取得
+      tags:
+        - recipe
+      parameters:
+        - name: recipe_id
+          in: query
+          required: true
+          schema:
+            description: 指定のレシピID
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetRecipe"
+        403:
+          $ref: "#/components/responses/Forbidden"
+        500:
+          $ref: "#/components/responses/InternalServerError"
+      security: []
+
+components:
+  responses:
+    Deleted:
+      description: Deleted
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/DeleteResponse"
+    BadRequest:
+      description: BadRequest
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorMessage"
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorMessage"
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorMessage"
+    NotFound:
+      description: NotFound
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorMessage"
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ServerErrorMessage"
+  schemas:
+    # 認証関連
+    AuthUserLogin:
+      description: ユーザーログイン
+      type: object
+      properties:
+        code:
+          $ref: "#/components/schemas/GoogleOAuthCode"
+      required:
+        - code
+    AuthUser:
+      description: ログイントークンとユーザー情報
+      type: object
+      properties:
+        token:
+          $ref: "#/components/schemas/Token"
+        user:
+          description: ユーザー情報
+          type: object
+          properties:
+            id:
+              $ref: "#/components/schemas/UserId"
+            username:
+              $ref: "#/components/schemas/UserName"
+            email:
+              $ref: "#/components/schemas/UserEmail"
+    GoogleOAuthCode:
+      description: GoogleOAuthコード
+      type: string
+      example: QBtV3PW5jWoOqUTbwtLifXQywN10wmfsNtUTpTVWcpveihYEo3Fleip3VNcQDO08A6L6t81g1
+    Token:
+      description: アクセストークン
+      type: string
+      minLength: 40
+      maxLength: 40
+      example: UnpVl7dpovQakaOlybkt7iOOdYufhnjjYnoCbPkb
+    UserId:
+      description: ユーザーID
+      type: string
+      format: uuid
+      example: 5B8393F1-ED5C-499A-8EAF-5C46E2048407
+    UserName:
+      description: ユーザー名
+      type: string
+      example: "佐藤三郎"
+    UserEmail:
+      description: ユーザーメールアドレス
+      type: string
+      example: "satosaburou@example.com"
+    GetPersonalRecipes:
+      description: 指定された個人のレシピ情報一覧取得
+      type: object
+      properties:
+        recipes:
+          type: array
+          nullable: true
+          items:
+            type: object
+            properties:
+              id:
+                $ref: "#/components/schemas/RecipeId"
+              name:
+                $ref: "#/components/schemas/RecipeName"
+              figure:
+                $ref: "#/components/schemas/MealFigure"
+    GetGlobalRecipes:
+      description: グローバルなレシピ情報一覧取得
+      type: object
+      properties:
+        recipes:
+          type: array
+          nullable: true
+          items:
+            type: object
+            properties:
+              id:
+                $ref: "#/components/schemas/RecipeId"
+              name:
+                $ref: "#/components/schemas/RecipeName"
+              figure:
+                $ref: "#/components/schemas/MealFigure"
+    GetRecipe:
+      description: 指定のレシピ取得
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/RecipeId"
+        figure:
+          $ref: "#/components/schemas/MealFigure"
+        name:
+          $ref: "#/components/schemas/RecipeName"
+        ingredients:
+          $ref: "#/components/schemas/IngredientsName"
+        description:
+          $ref: "#/components/schemas/Description"
+    PostOrderRequest:
+      description: パタメーターを指定し、gptにデータを送信
+      type: object
+      properties:
+        ingredients:
+          $ref: "#/components/schemas/IngredientsName"
+        isMain:
+          $ref: "#/components/schemas/IsMain"
+        isHot:
+          $ref: "#/components/schemas/IsHot"
+    PostOrderResponse:
+     description: gptから送られてきたレシピ情報のレスポンス
+     type: object
+     properties:
+        figure:
+          $ref: "#/components/schemas/MealFigure"
+        name:
+          $ref: "#/components/schemas/RecipeName"
+        ingredients:
+          $ref: "#/components/schemas/IngredientsName"
+        description:
+          $ref: "#/components/schemas/Description"
+    # Recipeモデルのフィールド
+    RecipeId:
+      description: レシピID
+      type: string
+      format: uuid
+      example: 05155992880D4AC6A1A13D25D125B0F4
+    MealFigure:
+      description: 画像のファイルパスを記載
+      type: string
+      example: example.com
+    RecipeName:
+      description: レシピ名
+      type: string
+      example: トマトサラダ
+    Description:
+      description: レシピの作り方の詳細な記述
+      type: string
+      example: 材料を切り、ドレッシングをかけてください。
+    # オーダーをポストする際のフィールド
+    IngredientsName:
+      description: 材料名
+      type: string
+      example: トマト、バジル、玉ねぎ
+    IsMain:
+      description: 主菜か
+      type: boolean
+      example: True
+    IsHot:
+      description: 温かいか
+      type: boolean
+      example: True
+    # 削除＆エラー関連
+    DeleteResponse:
+      description: 削除レスポンス
+      type: object
+    ErrorMessage:
+      description: エラーメッセージ
+      type: object
+      properties:
+        detail:
+          type: string
+    ServerErrorMessage:
+      description: サーバーエラーメッセージ
+      type: object
+      properties:
+        error:
+          type: string
