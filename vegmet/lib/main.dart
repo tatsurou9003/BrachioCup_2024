@@ -36,10 +36,64 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: const Center(),
-      bottomNavigationBar: const Footer(),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Colors.lightGreen,
+            Colors.white,
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        // appBar: AppBar(),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                'Veggie Gourmet',
+                style: TextStyle(
+                  fontStyle: FontStyle.italic,
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              Container(
+                height: 200,
+                width: 200,
+                child: Image.asset('../images/vegmet.png'),
+              ),
+              Container(
+                width: 280,
+                height: 80,
+                child: OutlinedButton(
+                  onPressed: (){
+                    // ボタンが押されたときの処理をここに書く
+                  },
+                  child: Text(
+                    'Enjoy your meals',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontSize: 25,
+                    ),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.orange,
+                    side: BorderSide(color: Colors.orange, width: 2),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        // bottomNavigationBar: const Footer(),
+      ),
     );
   }
 }
