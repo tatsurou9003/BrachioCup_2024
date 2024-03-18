@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-vegmet-dev-140847-authRole",
+      "UnauthRoleArn": "arn:aws:iam::371996564142:role/amplify-vegmet-dev-140847-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::371996564142:role/amplify-vegmet-dev-140847-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-vegmet-dev-140847-deployment",
+      "UnauthRoleName": "amplify-vegmet-dev-140847-unauthRole",
+      "StackName": "amplify-vegmet-dev-140847",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:371996564142:stack/amplify-vegmet-dev-140847/9aefbaf0-e4e5-11ee-8bac-0aaff48453af",
+      "AmplifyAppId": "d2p5mv0ebnl6m2"
+    },
+    "categories": {
+      "auth": {
+        "vegmetc0bcbb3b": {}
+      }
+    }
+  }
+}
