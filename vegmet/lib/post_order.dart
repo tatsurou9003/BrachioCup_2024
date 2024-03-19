@@ -62,7 +62,7 @@ class _PostOrderState extends State<PostOrder> {
                 '何が食べたい気分?',
                 style: TextStyle(
                   color: Colors.deepOrange[400],
-                  fontSize: 30,
+                  fontSize: 20,
                 ),
               ), 
             ), 
