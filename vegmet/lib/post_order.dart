@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:vegmet/confirm_post.dart';
 
 import 'footer.dart';
@@ -23,7 +25,10 @@ class PostOrder extends StatefulWidget {
 }
 
 class _PostOrderState extends State<PostOrder> {
-  String? _selectedItem; 
+  TextEditingController _controller = TextEditingController();
+
+  String? _inputName;
+  String? _selectedItem;
   String? _selectedItem2;
   String? _selectedItem3;
   String? _selectedMainOrSide; 
@@ -54,16 +59,30 @@ class _PostOrderState extends State<PostOrder> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.only(top: 10, left: 100, right: 100), 
-              child: Text(
-                '何が食べたい気分?',
-                style: TextStyle(
-                  color: Colors.deepOrange[400],
-                  fontSize: 20,
+            Container(
+              width: double.infinity,
+              // color: Colors.white,
+              child: TextField(
+                controller: _controller,
+                onChanged: (value) {
+                  setState(() {
+                    _inputName = value;
+                  });
+                },
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(10),
+                ],
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'レシピ名を入力してください',
+                  fillColor: Colors.green,
                 ),
-              ), 
-            ), 
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
           ],
         ),
         centerTitle: true,
@@ -282,6 +301,7 @@ class _PostOrderState extends State<PostOrder> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => ConfirmPost(
+                      _inputName ?? '',
                       _selectedItem ?? '',
                       _selectedItem2 ?? '',
                       _selectedItem3 ?? '',
@@ -316,5 +336,11 @@ class _PostOrderState extends State<PostOrder> {
       // フッター
       bottomNavigationBar: const Footer(),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
