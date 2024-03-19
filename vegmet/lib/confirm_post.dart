@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'footer.dart';
@@ -26,6 +28,7 @@ class ConfirmPost extends StatelessWidget {
   final String selectedItem3;
   final String selectedMainOrSide;
   final String selectedHotOrCold;
+  final String createdDescription;
 
   ConfirmPost(
     this.inputName,
@@ -34,6 +37,7 @@ class ConfirmPost extends StatelessWidget {
     this.selectedItem3,
     this.selectedMainOrSide,
     this.selectedHotOrCold,
+    this.createdDescription,
   );
 
   @override
@@ -48,6 +52,19 @@ class ConfirmPost extends StatelessWidget {
       paddingValue = 550;
     } else if (width <= 1050) {
       paddingValue = 700;
+    }
+
+    final String sendData = selectedItem + ',' + selectedItem2 + ',' + selectedItem3 + ',' + selectedMainOrSide + ',' + selectedHotOrCold;
+
+    Future<void> postData(String sendData) async {
+      Response response = await Dio().post(
+        // 'https://e9nrzw97x4.execute-api.ap-northeast-1.amazonaws.com/dev/vegmet/home',
+        'https://e9nrzw97x4.execute-api.ap-northeast-1.amazonaws.com/dev/vegmet/order',
+        data: {
+          'ingredients': sendData,
+        },
+      );
+      print(response.data);
     }
 
     return Scaffold(
@@ -162,7 +179,7 @@ class ConfirmPost extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Padding(
                           padding: EdgeInsets.only(top: 20),
                           child: Row(
@@ -189,9 +206,10 @@ class ConfirmPost extends StatelessWidget {
                               padding: EdgeInsets.only(bottom: 10, left: 20),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
-                                    "料理のレシピにある「少々」「適量」「弱火」「中火」「強火」などの表現は人によって異なります。また、様々な条件によって調理環境も変わってくるので、従来のレシピ通りに出来上がるとは限りません。素材に火を通した時の加熱の仕組みや人間の脳と味覚の関係など科学的根拠を理解することによって、どんな料理にも応用することができるようになります。",
+                                    // "料理のレシピにある「少々」「適量」「弱火」「中火」「強火」などの表現は人によって異なります。また、様々な条件によって調理環境も変わってくるので、従来のレシピ通りに出来上がるとは限りません。素材に火を通した時の加熱の仕組みや人間の脳と味覚の関係など科学的根拠を理解することによって、どんな料理にも応用することができるようになります。",
+                                    "$createdDescription",
                                     style: TextStyle(
                                       decoration: TextDecoration.underline,
                                       decorationColor: Color.fromARGB(255, 14, 105, 18),
@@ -215,6 +233,12 @@ class ConfirmPost extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 40.0),
                     child: ElevatedButton(
                       onPressed: () {
+                        // final dio = Dio();
+                        // final response = await dio.post('https://e9nrzw97x4.execute-api.ap-northeast-1.amazonaws.com/dev/vegmet/order',
+                        //   data: {
+                        //     'ingredients': sendData,
+                        //   }
+                        // );
                         // 送信ボタンが押されたときの処理
                         // Navigator.push(
                         //   context,
