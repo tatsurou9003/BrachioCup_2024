@@ -145,7 +145,7 @@ class _PostOrderState extends State<PostOrder> {
               padding: const EdgeInsets.only(left: 100, right: 100), 
               child: DropdownButton(
               style: TextStyle(
-                color: Colors.orange[300],
+                color: Colors.orange,
               ),
               value: _selectedItem, 
               onChanged: (String? newValue) {
@@ -167,7 +167,7 @@ class _PostOrderState extends State<PostOrder> {
               padding: const EdgeInsets.only(left: 100, right: 100), 
               child: DropdownButton<String>(
               style: TextStyle(
-                color: Colors.orange[300],
+                color: Colors.orange,
               ),
               value: _selectedItem2, 
               onChanged: (String? newValue) {
@@ -190,7 +190,7 @@ class _PostOrderState extends State<PostOrder> {
               padding: const EdgeInsets.only(left: 100, right: 100), 
               child: DropdownButton<String>(
               style: TextStyle(
-                color: Colors.orange[300],
+                color: Colors.orange,
               ),
               value: _selectedItem3, 
               onChanged: (String? newValue) {
@@ -228,7 +228,7 @@ class _PostOrderState extends State<PostOrder> {
               padding: const EdgeInsets.only(left: 100, right: 100),
               child: DropdownButton<String>(
               style: TextStyle(
-                color: Colors.orange[300],
+                color: Colors.orange,
               ),
               value: _selectedMainOrSide, 
               onChanged: (String? newValue) {
@@ -267,7 +267,7 @@ class _PostOrderState extends State<PostOrder> {
               padding: const EdgeInsets.only(left: 100, right: 100),
               child: DropdownButton<String>(
               style: TextStyle(
-                color: Colors.orange[300],
+                color: Colors.orange,
               ),
               value: _selectedHotOrCold, 
               onChanged: (String? newValue) {
