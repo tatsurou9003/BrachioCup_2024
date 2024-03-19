@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 
 import 'footer.dart';
 import 'main.dart';
+import 'detail.dart';
 
 class HomeGlobal extends StatefulWidget {
   const HomeGlobal();
@@ -18,16 +19,10 @@ class HomeGlobal extends StatefulWidget {
 class _HomeGlobal extends State {
   List recipeImageList = [];
   List recipeNameList = [];
-
-  String tempImage = 'https://cdn.pixabay.com/photo/2014/05/18/11/25/pizza-346985_1280.jpg';
+  List recipeIngredientsList = [];
+  List recipeDescriptionList = [];
 
   Future<void> fetchData() async {
-    // try{
-    //   Response response = await Dio().get(ç);
-    //   print(response.data);
-    // } on DioError catch (e) {
-    //   print('Dio Error: $e');
-    // }
     Response response = await Dio().get(
       'https://e9nrzw97x4.execute-api.ap-northeast-1.amazonaws.com/dev/vegmet/home',
     );
@@ -40,31 +35,17 @@ class _HomeGlobal extends State {
       // print(response.data[i]);
       recipeImageList.add(response.data[i]['figure']);
       recipeNameList.add(response.data[i]['name']);
+      recipeIngredientsList.add(response.data[i]['ingredients']);
+      recipeDescriptionList.add(response.data[i]['description']);
       print('');
     }
     print('');
     print(recipeImageList);
     print(recipeNameList);
+    print(recipeIngredientsList);
+    print(recipeDescriptionList);
     setState(() {});
   }
-
-  // Future<void> fetchData() async {
-  //   // var url = Uri.https('https://e9nrzw97x4.execute-api.ap-northeast-1.amazonaws.com', '/dev/vegmet/home');
-  //   var url = Uri.https('e9nrzw97x4.execute-api.ap-northeast-1.amazonaws.com', '/dev/vegmet/home');
-  //   var response = await http.get(url);
-  //   print('Response status: ${response.statusCode}');
-  //   print('Response body: ${response.body}');
-  // }
-
-  // var recipeData = <String, dynamic>{
-  //   'id' : '639c15a0-c297-23b7-45f9-6edffcafce3a',
-  //   'user_id' : '639c15a0-c297-23b7-45f9-6edffcafce3a',
-  //   'figure' : '../../images/salad.png',
-  //   'name' : 'トマトサラダ',
-  //   'description' : 'ドレッシングをかけてください。',
-  //   'created_at' : '',
-  //   'like_count' : 0,
-  // };
 
   var userData = {
     'id' : '639c15a0-c297-23b7-45f9-6edffcafce3a',
@@ -79,37 +60,6 @@ class _HomeGlobal extends State {
 
   @override
   Widget build(BuildContext context) {
-    // recipeData.forEach((String key, dynamic value) {
-    //   print('$key : $value');
-    // });
-
-    List<String> strList = [
-      'アボカドサラダ',
-      'トマトサラダ',
-      '南瓜スープ',
-      '野菜タコス',
-      '野菜シチュー',
-      '野菜カレー',
-      '料理1',
-      '料理2',
-      '料理3',
-      '料理4',
-      '料理5',
-    ];
-
-    List<String> imageList = [
-      'https://cdn.pixabay.com/photo/2014/05/18/11/25/pizza-346985_1280.jpg',
-      'https://cdn.pixabay.com/photo/2014/05/18/11/25/pizza-346985_1280.jpg',
-      'https://cdn.pixabay.com/photo/2014/05/18/11/25/pizza-346985_1280.jpg',
-      'https://cdn.pixabay.com/photo/2014/05/18/11/25/pizza-346985_1280.jpg',
-      'https://cdn.pixabay.com/photo/2014/05/18/11/25/pizza-346985_1280.jpg',
-      'https://cdn.pixabay.com/photo/2014/05/18/11/25/pizza-346985_1280.jpg',
-      'https://cdn.pixabay.com/photo/2014/05/18/11/25/pizza-346985_1280.jpg',
-      'https://cdn.pixabay.com/photo/2014/05/18/11/25/pizza-346985_1280.jpg',
-      'https://cdn.pixabay.com/photo/2014/05/18/11/25/pizza-346985_1280.jpg',
-      'https://cdn.pixabay.com/photo/2014/05/18/11/25/pizza-346985_1280.jpg',
-      'https://cdn.pixabay.com/photo/2014/05/18/11/25/pizza-346985_1280.jpg',
-    ];
 
     return MaterialApp(
       home: Scaffold(
@@ -148,8 +98,8 @@ class _HomeGlobal extends State {
                 onTap: (){
                   Navigator.push(
                     context,
-                    // MaterialPageRoute(builder: (context) => MyHomePage(title: "Veggie Gourmet", index)),
-                    MaterialPageRoute(builder: (context) => MyHomePage(title: "Veggie Gourmet")),
+                    MaterialPageRoute(builder: (context) => Detail(index, recipeImageList, recipeNameList, recipeIngredientsList,recipeDescriptionList)),
+                    // MaterialPageRoute(builder: (context) => MyHomePage(title: "Veggie Gourmet")),
                   );
                 },
                 child: Container(
