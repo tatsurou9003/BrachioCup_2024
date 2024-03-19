@@ -34,6 +34,7 @@ class _Footer extends State {
               iconSize: 50,
               onPressed: () {
                 // ボタンが押されたときの処理
+                Navigator.push(context, MaterialPageRoute(builder: (context) => PostOrder()),);
               },
             ),
             IconButton( 
@@ -41,6 +42,7 @@ class _Footer extends State {
               iconSize: 50,
               onPressed: () {
                 // ボタンが押されたときの処理
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Detail()),);
               },
             ),
           ],
