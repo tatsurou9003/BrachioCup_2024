@@ -64,15 +64,15 @@ class ConfirmPost extends StatelessWidget {
         automaticallyImplyLeading: false
       ),
       body: Padding(
-        padding: const EdgeInsets.only(bottom: 50.0),
+        padding: const EdgeInsets.only(bottom: 50.0, left: 30, right: 30),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
                 width: paddingValue,
                 height: 200,
-                decoration: BoxDecoration( // 枠線
+                decoration: BoxDecoration(
                   border: Border.all(
                     color: Colors.grey,
                     width: 2.0,
@@ -81,71 +81,62 @@ class ConfirmPost extends StatelessWidget {
                   color: Colors.white,
                 ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-
-                  // Ingredients
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 10, left: 20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '材料(一人分)',
-                                  style: TextStyle(
-                                    fontSize: 18.0,
-                                    color: Color.fromARGB(255, 14, 105, 18),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(height: 8),
-                                    Text(
-                                      "・ $selectedItem",
-                                      style: TextStyle(
-                                        decoration: TextDecoration.underline,
-                                        decorationColor: Color.fromARGB(255, 14, 105, 18),
-                                      ),
-                                    ),
-                                    SizedBox(height: 8),
-                                    Text(
-                                      "・ $selectedItem2",
-                                      style: TextStyle(
-                                        decoration: TextDecoration.underline,
-                                        decorationColor: Color.fromARGB(255, 14, 105, 18),
-                                      ),
-                                    ),
-                                    SizedBox(height: 8),
-                                    Text(
-                                      "・ $selectedItem3",
-                                      style: TextStyle(
-                                        decoration: TextDecoration.underline,
-                                        decorationColor: Color.fromARGB(255, 14, 105, 18),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10, left: 20),
+                        child: Text(
+                          '材料(一人分)',
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Color.fromARGB(255, 14, 105, 18),
+                            fontWeight: FontWeight.bold,
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 8),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10, left: 20),
+                        child: Text(
+                          "・ $selectedItem",
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            decorationColor: Color.fromARGB(255, 14, 105, 18),
+                          ),
+                        ),
+                      ),
+                      
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10, left: 20),
+                        child: Text(
+                         "・ $selectedItem2",
+                         style: TextStyle(
+                           decoration: TextDecoration.underline,
+                           decorationColor: Color.fromARGB(255, 14, 105, 18),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10, left: 20),
+                        child: Text(
+                          "・ $selectedItem3",
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            decorationColor: Color.fromARGB(255, 14, 105, 18),
+                          ),
+                        ),
+                      ),
+                    ],
                 ),
               ),
+
 
               // Recipes
               Padding(
                 // 枠線間のPadding
-                padding: EdgeInsets.only(top: 40),
+                padding: EdgeInsets.only(top: 40, left: 10, right: 10),
                 child: Container(
                   width: paddingValue,
                   height: 200,
@@ -157,8 +148,8 @@ class ConfirmPost extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0),
                     color: Colors.white,
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  child: ListView(
+                    //mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Padding(
                         padding: EdgeInsets.only(top: 20),
