@@ -50,7 +50,7 @@ class _Footer extends State {
               iconSize: 50,
               onPressed: () {
                 // ボタンが押されたときの処理
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Detail(0, ['https://cdn.pixabay.com/photo/2014/05/18/11/25/pizza-346985_1280.jpg'], ['aa'], ['tomato,cucumber,eggplant'], ['salt, pepper, and so on. veggie veggie bbbbbbbbbbbbbbbbbbbbbbbb. '])),);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Detail(0, ['https://cdn.pixabay.com/photo/2014/05/18/11/25/pizza-346985_1280.jpg'], ['tasty soup'], ['tomato,cucumber,eggplant'], ['salt, pepper, and so on. veggie veggie bbbbbbbbbbbbbbbbbbbbbbbb. '])),);
               },
             ),
           ],

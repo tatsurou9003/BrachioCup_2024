@@ -5,6 +5,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'amplifyconfiguration.dart';
 
 import 'footer.dart';
+import 'homeGlobal.dart';
 
 void main() {
   runApp(const MyApp());
@@ -42,30 +43,33 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         color: Colors.lightGreen,
         builder: Authenticator.builder(),
-        home: MyHomePage(title: "Veggie Gourmet")),
+        theme: ThemeData(fontFamily: "NotoSansJP"),
+        home: HomeGlobal(),
+      ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title});
+// class MyHomePage extends StatefulWidget {
+//   const MyHomePage({Key? key, required this.title});
 
-  final String title;
+//   final String title;
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+//   @override
+//   State<MyHomePage> createState() => _MyHomePageState();
+// }
 
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: const Center(),
-      bottomNavigationBar: const Footer(),
-    );
-  }
-}
+// class _MyHomePageState extends State<MyHomePage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(),
+//       // body: const Center(),
+//       body: HomeGlobal(),
+//       bottomNavigationBar: const Footer(),
+//     );
+//   }
+// }
 
 class TopPage extends StatefulWidget {
   const TopPage({super.key});

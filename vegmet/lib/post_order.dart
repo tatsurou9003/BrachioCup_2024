@@ -7,6 +7,7 @@ void main() {
   runApp(MaterialApp(
     title: 'Main Vegetable Selection',
     initialRoute: '/', // 初期ルートを指定
+    theme: ThemeData(fontFamily: "NotoSansJP"),
     routes: {
       '/post_order': (context) => PostOrder(), // PostOrder画面
     },
@@ -32,9 +33,6 @@ class _PostOrderState extends State<PostOrder> {
 
   @override
   Widget build(BuildContext context) {
-    // ログイン情報をもとに名前を受け取る
-    final username = 'userName';
-
     // Media Query
     final mediaQueryData = MediaQuery.of(context);
     final width = mediaQueryData.size.width;
