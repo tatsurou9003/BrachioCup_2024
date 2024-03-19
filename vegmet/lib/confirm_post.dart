@@ -20,6 +20,7 @@ class ConfirmPost extends StatelessWidget {
     }
   }
 
+  final String inputName;
   final String selectedItem;
   final String selectedItem2;
   final String selectedItem3;
@@ -27,6 +28,7 @@ class ConfirmPost extends StatelessWidget {
   final String selectedHotOrCold;
 
   ConfirmPost(
+    this.inputName,
     this.selectedItem,
     this.selectedItem2,
     this.selectedItem3,
@@ -53,7 +55,7 @@ class ConfirmPost extends StatelessWidget {
         backgroundColor: Colors.yellow[100],
         centerTitle: true,
         title: Text(
-          'トマトサラダ',
+          '$inputName',
           style: TextStyle(
             fontSize: 32,
             color: Colors.orange[200],
@@ -157,50 +159,52 @@ class ConfirmPost extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0),
                     color: Colors.white,
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.only(top: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Padding(
+                          padding: EdgeInsets.only(top: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 10, left: 20),
+                                child: Text(
+                                  'Recipe',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    color: Color.fromARGB(255, 14, 105, 18),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Wrap(
+                          //mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Padding(
                               padding: EdgeInsets.only(bottom: 10, left: 20),
-                              child: Text(
-                                'Recipe',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Color.fromARGB(255, 14, 105, 18),
-                                  fontWeight: FontWeight.bold,
-                                ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  Text(
+                                    "料理のレシピにある「少々」「適量」「弱火」「中火」「強火」などの表現は人によって異なります。また、様々な条件によって調理環境も変わってくるので、従来のレシピ通りに出来上がるとは限りません。素材に火を通した時の加熱の仕組みや人間の脳と味覚の関係など科学的根拠を理解することによって、どんな料理にも応用することができるようになります。",
+                                    style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: Color.fromARGB(255, 14, 105, 18),
+                                    ),
+                                    softWrap: true,
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
-                      ),
-                      Wrap(
-                        //mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 10, left: 20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text(
-                                  "料理のレシピにある「少々」「適量」「弱火」「中火」「強火」などの表現は人によって異なります。また、様々な条件によって調理環境も変わってくるので、従来のレシピ通りに出来上がるとは限りません。素材に火を通した時の加熱の仕組みや人間の脳と味覚の関係など科学的根拠を理解することによって、どんな料理にも応用することができるようになります。",
-                                  style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    decorationColor: Color.fromARGB(255, 14, 105, 18),
-                                  ),
-                                  softWrap: true,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
