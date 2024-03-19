@@ -59,24 +59,13 @@ class _PostOrderState extends State<PostOrder> {
             Padding(
               padding: EdgeInsets.only(top: 10, left: 100, right: 100), 
               child: Text(
-                'Hi, $username',
+                '何が食べたい気分?',
                 style: TextStyle(
                   color: Colors.deepOrange[400],
-                  fontSize: 32,
+                  fontSize: 30,
                 ),
               ), 
             ), 
-
-            Padding(
-              padding: EdgeInsets.only(left: 100, right: 100),
-              child:Text(
-                'What do you feel like eating?',
-                style: TextStyle(
-                  color: Colors.orange,
-                  fontSize: 16,
-                ),
-              ),
-            ),
           ],
         ),
         centerTitle: true,
@@ -128,7 +117,7 @@ class _PostOrderState extends State<PostOrder> {
                 children:  [
                   Padding(
                     padding: EdgeInsets.only(bottom: 10,left: 100),
-                    child: Text('Main Vegentable',
+                    child: Text('メインの野菜',
                       style: TextStyle(
                         fontSize: 18.0,
                         color: Color.fromARGB(255, 14, 105, 18),
@@ -214,7 +203,7 @@ class _PostOrderState extends State<PostOrder> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 20,left: 100),
                   child:Text(
-                    'Main or Side',
+                    '主菜？副菜？',
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.green[800],
@@ -253,7 +242,7 @@ class _PostOrderState extends State<PostOrder> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 20,left: 100),
                   child:Text(
-                    'Hot or Cold',
+                    '温かい？冷たい？',
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.green[800],

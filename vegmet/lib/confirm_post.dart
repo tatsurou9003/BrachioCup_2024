@@ -96,7 +96,7 @@ class ConfirmPost extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Ingredients (one person)',
+                                  '材料(一人分)',
                                   style: TextStyle(
                                     fontSize: 18.0,
                                     color: Color.fromARGB(255, 14, 105, 18),
@@ -168,7 +168,7 @@ class ConfirmPost extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(bottom: 10, left: 20),
                               child: Text(
-                                'Recipe',
+                                'レシピ',
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   color: Color.fromARGB(255, 14, 105, 18),
@@ -183,7 +183,7 @@ class ConfirmPost extends StatelessWidget {
                         //mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(bottom: 10, left: 20),
+                            padding: EdgeInsets.only(bottom: 10, left: 20, right: 20),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: const [

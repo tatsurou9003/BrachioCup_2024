@@ -102,7 +102,7 @@ class Detail extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: 10, left: 20),
                         child: Text(
-                          'Ingredients (one person)',
+                          '材料 (一人分)',
                           style: TextStyle(
                             fontSize: 18.0,
                             color: Color.fromARGB(255, 14, 105, 18),
@@ -164,7 +164,7 @@ class Detail extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: 20, left: 20),
                         child: Text(
-                          'Recipe',
+                          'レシピ',
                           style: TextStyle(
                             fontSize: 18.0,
                             color: Color.fromARGB(255, 14, 105, 18),
@@ -174,7 +174,7 @@ class Detail extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       Padding(
-                        padding: EdgeInsets.only(left: 20),
+                        padding: EdgeInsets.only(left: 20, right: 20),
                         child: Text(
                           "料理のレシピにある「少々」「適量」「弱火」「中火」「強火」などの表現は人によって異なります。また、様々な条件によって調理環境も変わってくるので、従来のレシピ通りに出来上がるとは限りません。素材に火を通した時の加熱の仕組みや人間の脳と味覚の関係など科学的根拠を理解することによって、どんな料理にも応用することができるようになります。",
                           style: TextStyle(
