@@ -24,7 +24,6 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     print('called initState');
     _configureAmplify();
-    // const MyHomePage(title: 'Veggie Gourmet');
   }
 
   void _configureAmplify() async {

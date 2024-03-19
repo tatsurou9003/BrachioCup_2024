@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'homeGlobal.dart';
+
 class Footer extends StatefulWidget {
   const Footer();
 
@@ -27,6 +29,10 @@ class _Footer extends State {
               iconSize: 50,
               onPressed: () {
                 // ボタンが押されたときの処理
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeGlobal()),
+                );
               },
             ),
             IconButton( 
