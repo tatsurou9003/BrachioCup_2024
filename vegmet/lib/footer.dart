@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:vegmet/detail.dart';
+import 'package:vegmet/post_order.dart';
+
+import 'homeGlobal.dart';
 
 class Footer extends StatefulWidget {
   const Footer();
@@ -27,6 +31,10 @@ class _Footer extends State {
               iconSize: 50,
               onPressed: () {
                 // ボタンが押されたときの処理
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeGlobal()),
+                );
               },
             ),
             IconButton( 
@@ -42,7 +50,7 @@ class _Footer extends State {
               iconSize: 50,
               onPressed: () {
                 // ボタンが押されたときの処理
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Detail()),);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Detail(0, ['https://cdn.pixabay.com/photo/2014/05/18/11/25/pizza-346985_1280.jpg'], ['aa'], ['tomato,cucumber,eggplant'], ['salt, pepper, and so on. veggie veggie bbbbbbbbbbbbbbbbbbbbbbbb. '])),);
               },
             ),
           ],

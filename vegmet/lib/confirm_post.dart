@@ -81,62 +81,71 @@ class ConfirmPost extends StatelessWidget {
                   color: Colors.white,
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 10, left: 20),
-                        child: Text(
-                          '材料(一人分)',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            color: Color.fromARGB(255, 14, 105, 18),
-                            fontWeight: FontWeight.bold,
+                  mainAxisAlignment: MainAxisAlignment.center,
+
+                  // Ingredients
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 10, left: 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Ingredients (one person)',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    color: Color.fromARGB(255, 14, 105, 18),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: 8),
+                                    Text(
+                                      "・ $selectedItem",
+                                      style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        decorationColor: Color.fromARGB(255, 14, 105, 18),
+                                      ),
+                                    ),
+                                    SizedBox(height: 8),
+                                    Text(
+                                      "・ $selectedItem2",
+                                      style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        decorationColor: Color.fromARGB(255, 14, 105, 18),
+                                      ),
+                                    ),
+                                    SizedBox(height: 8),
+                                    Text(
+                                      "・ $selectedItem3",
+                                      style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        decorationColor: Color.fromARGB(255, 14, 105, 18),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
+                        ],
                       ),
-                      SizedBox(height: 8),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 10, left: 20),
-                        child: Text(
-                          "・ $selectedItem",
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            decorationColor: Color.fromARGB(255, 14, 105, 18),
-                          ),
-                        ),
-                      ),
-                      
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 10, left: 20),
-                        child: Text(
-                         "・ $selectedItem2",
-                         style: TextStyle(
-                           decoration: TextDecoration.underline,
-                           decorationColor: Color.fromARGB(255, 14, 105, 18),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 10, left: 20),
-                        child: Text(
-                          "・ $selectedItem3",
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            decorationColor: Color.fromARGB(255, 14, 105, 18),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
+                  ],
                 ),
               ),
-
 
               // Recipes
               Padding(
                 // 枠線間のPadding
-                padding: EdgeInsets.only(top: 40, left: 10, right: 10),
+                padding: EdgeInsets.only(top: 40),
                 child: Container(
                   width: paddingValue,
                   height: 200,
@@ -148,8 +157,8 @@ class ConfirmPost extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0),
                     color: Colors.white,
                   ),
-                  child: ListView(
-                    //mainAxisAlignment: MainAxisAlignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Padding(
                         padding: EdgeInsets.only(top: 20),
@@ -159,7 +168,7 @@ class ConfirmPost extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(bottom: 10, left: 20),
                               child: Text(
-                                'レシピ',
+                                'Recipe',
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   color: Color.fromARGB(255, 14, 105, 18),
@@ -174,7 +183,7 @@ class ConfirmPost extends StatelessWidget {
                         //mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(bottom: 10, left: 20, right: 20),
+                            padding: EdgeInsets.only(bottom: 10, left: 20),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: const [
