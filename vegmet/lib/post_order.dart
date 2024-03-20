@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:vegmet/confirm_post.dart';
 
+import 'package:dio/dio.dart';
+
 import 'footer.dart';
 
 void main() {
@@ -25,16 +27,58 @@ class PostOrder extends StatefulWidget {
 }
 
 class _PostOrderState extends State<PostOrder> {
+  bool _isLoading = false;
   TextEditingController _controller = TextEditingController();
 
   String? _inputName;
   String? _selectedItem;
   String? _selectedItem2;
   String? _selectedItem3;
-  String? _selectedMainOrSide; 
-  String? _selectedHotOrCold; 
+  String? _selectedMainOrSide;
+  String? _selectedHotOrCold;
 
   final List<String> itemList = ['トマト', 'キュウリ', 'ナス', 'カボチャ', 'キャベツ', 'ニンジン', 'ジャガイモ', 'レタス'];
+
+  Future<void> postDataAndChangeScreen(String _selectedItem, String _selectedItem2, String _selectedItem3, String _selectedMainOrSide, String _selectedHotOrCold) async {
+    setState(() {
+      _isLoading = true;
+    });
+    String _createdDescription;
+    final String sendData = _selectedItem + ',' + _selectedItem2 + ',' + _selectedItem3 + ',' + _selectedMainOrSide + ',' + _selectedHotOrCold;
+    try{
+      Response response = await Dio().post(
+        // 'https://e9nrzw97x4.execute-api.ap-northeast-1.amazonaws.com/dev/vegmet/home',
+        'https://e9nrzw97x4.execute-api.ap-northeast-1.amazonaws.com/dev/vegmet/order',
+        data: {
+          "ingredients": sendData,
+        },
+      );
+      print(sendData);
+      print(response.data['content'][0]['text']);
+
+      _createdDescription = response.data['content'][0]['text'];
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ConfirmPost(
+          _inputName ?? '',
+          _selectedItem ?? '',
+          _selectedItem2 ?? '',
+          _selectedItem3 ?? '',
+          _selectedMainOrSide ?? '',
+          _selectedHotOrCold ?? '',
+          _createdDescription ?? '')),
+      );
+    } on DioError catch(e) {
+      debugPrint('Request failed : $e');
+    } finally {
+      if(mounted){
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,9 +199,10 @@ class _PostOrderState extends State<PostOrder> {
               ),
               value: _selectedItem, 
               onChanged: (String? newValue) {
-                setState(() {
-                  _selectedItem = newValue; 
-                });
+                if (newValue != null) {
+                  setState(() {
+                    _selectedItem = newValue; 
+                  });}
               },
               items: itemList.map((value) {
                 return DropdownMenuItem<String>(
@@ -177,9 +222,10 @@ class _PostOrderState extends State<PostOrder> {
               ),
               value: _selectedItem2, 
               onChanged: (String? newValue) {
+                if (newValue != null) {
                 setState(() {
                   _selectedItem2 = newValue; 
-                });
+                });}
               },
               items: itemList.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
@@ -200,9 +246,10 @@ class _PostOrderState extends State<PostOrder> {
               ),
               value: _selectedItem3, 
               onChanged: (String? newValue) {
+                if (newValue != null) {
                 setState(() {
                   _selectedItem3 = newValue; 
-                });
+                });}
               },
               items: itemList.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
@@ -238,9 +285,10 @@ class _PostOrderState extends State<PostOrder> {
               ),
               value: _selectedMainOrSide, 
               onChanged: (String? newValue) {
-                setState(() {
-                  _selectedMainOrSide = newValue; 
-                });
+                if (newValue != null) {
+                  setState(() {
+                    _selectedMainOrSide = newValue; 
+                  });}
               },
               items: <String>['主菜', '副菜']
                   .map<DropdownMenuItem<String>>((String value) {
@@ -277,9 +325,10 @@ class _PostOrderState extends State<PostOrder> {
               ),
               value: _selectedHotOrCold, 
               onChanged: (String? newValue) {
-                setState(() {
-                  _selectedHotOrCold = newValue; 
-                });
+                if (newValue != null) {
+                  setState(() {
+                    _selectedHotOrCold = newValue; 
+                  });}
               },
               items: <String>['温かい', '冷たい']
                   .map<DropdownMenuItem<String>>((String value) {
@@ -295,36 +344,40 @@ class _PostOrderState extends State<PostOrder> {
 
             Padding(
               padding: const EdgeInsets.only(top: 40.0), 
-              child: ElevatedButton(
-                onPressed: () {
-                  // 送信ボタンが押されたときの処理
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ConfirmPost(
-                      _inputName ?? '',
-                      _selectedItem ?? '',
-                      _selectedItem2 ?? '',
-                      _selectedItem3 ?? '',
-                      _selectedMainOrSide ?? '',
-                      _selectedHotOrCold ?? '')),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.greenAccent,
-                  shape: RoundedRectangleBorder( 
-                    borderRadius: BorderRadius.circular(20.0),
+              child: Center(
+                child: _isLoading
+                    ? CircularProgressIndicator()
+                    : ElevatedButton(
+                  onPressed: () {
+                    // if((_selectedItem != null) && (_selectedItem2 != null) && ((_selectedItem3 != null)))
+                    // postDataAndChangeScreen(_selectedItem, _selectedItem2, _selectedItem3, _selectedMainOrSide, _selectedHotOrCold);
+                    postDataAndChangeScreen(
+                        _selectedItem ?? '',
+                        _selectedItem2 ?? '',
+                        _selectedItem3 ?? '',
+                        _selectedMainOrSide ?? '',
+                        _selectedHotOrCold ?? ''
+                    );
+                    // 送信ボタンが押されたときの処理
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.greenAccent,
+                    shape: RoundedRectangleBorder( 
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                  ),
+                child: Padding( 
+                  padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                  child: Text(
+                    'Post Order',
+                     style: TextStyle(
+                       color: Colors.white,
+                       fontSize: 18.0,
+                     ),
+                    ),
                   ),
                 ),
-              child: Padding( 
-                padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
-                child: Text(
-                  'Post Order',
-                   style: TextStyle(
-                     color: Colors.white,
-                     fontSize: 18.0,
-                   ),
-                ),
-              )),
+              ),
             ),
           ],
         ),
