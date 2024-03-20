@@ -114,7 +114,7 @@ class _PostOrderState extends State<PostOrder> {
                   });
                 },
                 inputFormatters: [
-                  LengthLimitingTextInputFormatter(10),
+                  LengthLimitingTextInputFormatter(6),
                 ],
                 decoration: InputDecoration(
                   border: InputBorder.none,
