@@ -67,9 +67,18 @@ class Detail extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
                     // child: Image.asset(
-                    child: Image.network(
-                      '$image', // 画像のパスを指定してください
-                      fit: BoxFit.cover,
+                    child: GridTile(
+                      child: GestureDetector(
+                        onTap: () {
+                          print('called');
+                          _showModal(context);
+                          // do something.
+                        },
+                        child: Image.network(
+                          '$image', // 画像のパスを指定してください
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -224,4 +233,29 @@ class Detail extends StatelessWidget {
       bottomNavigationBar: const Footer(),
     );
   }
+}
+
+void _showModal(BuildContext  context) {
+  showModalBottomSheet<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        height: 400,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              const ListTile(
+                leading: Icon(Icons.photo_album),
+                title: Text('料理の写真を取る'),
+                subtitle: Text('撮影した写真はアプリに投稿されます'),
+              ),
+              ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Close')),
+            ],
+          ),
+        ),
+      );
+    },
+  );
 }

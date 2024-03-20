@@ -81,7 +81,7 @@ class _HomeGlobal extends State {
               child: Image.asset('../images/vegmet.png'),
             ),
           title: Text(
-            'Global recipes',
+            'みんなのレシピ',
             style: TextStyle(
               fontStyle: FontStyle.italic,
               fontSize: 30,

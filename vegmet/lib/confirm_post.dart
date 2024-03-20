@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'footer.dart';
+import 'homeGlobal.dart';
 
 
 // class ConfirmPost extends StatelessWidget {
@@ -441,15 +442,16 @@ class _ConfirmPostState extends State<ConfirmPost> {
 
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ConfirmPost(
-            inputName ?? '',
-            selectedItem ?? '',
-            selectedItem2 ?? '',
-            selectedItem3 ?? '',
-            selectedMainOrSide ?? '',
-            selectedHotOrCold ?? '',
-            createdDescription ?? '')),
-        );
+        //   MaterialPageRoute(builder: (context) => ConfirmPost(
+        //     inputName ?? '',
+        //     selectedItem ?? '',
+        //     selectedItem2 ?? '',
+        //     selectedItem3 ?? '',
+        //     selectedMainOrSide ?? '',
+        //     selectedHotOrCold ?? '',
+        //     createdDescription ?? '')),
+        // );
+          MaterialPageRoute(builder: (context) => HomeGlobal()));
       } on DioError catch(e) {
         debugPrint('Request failed : $e');
       } finally {
@@ -679,6 +681,9 @@ class _ConfirmPostState extends State<ConfirmPost> {
                     padding: const EdgeInsets.only(top: 40.0),
                     child: ElevatedButton(
                       onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeGlobal()));
                         // 送信ボタンが押されたときの処理
                         // Navigator.push(
                         //   context,
