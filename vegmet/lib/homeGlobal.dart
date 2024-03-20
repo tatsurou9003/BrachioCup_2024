@@ -33,6 +33,16 @@ class _HomeGlobal extends State {
     for (var i=0; i<response.data.length; i++) {
       // print(i);
       // print(response.data[i]);
+      // if (response.data[i]['name'] == null){
+      //   response.data[i]['name'] = 'Nameless';
+      // } else {
+      //   recipeNameList.add(response.data[i]['name']);
+      // }
+
+      // recipeImageList.add(response.data[i]['figure'].toString());
+      // recipeNameList.add(response.data[i]['name'].toString());
+      // recipeIngredientsList.add(response.data[i]['ingredients'].toString());
+      // recipeDescriptionList.add(response.data[i]['description'].toString());
       recipeImageList.add(response.data[i]['figure']);
       recipeNameList.add(response.data[i]['name']);
       recipeIngredientsList.add(response.data[i]['ingredients']);
